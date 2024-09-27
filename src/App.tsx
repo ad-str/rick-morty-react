@@ -10,7 +10,11 @@ export default function App() {
 
   const CHARACTERS = [
     {name: "Rick", species: "Human", status: "Alive", gender: "Male", dateCreated: "2017-11-04T18:48:46.250Z"},
-    {name: "Morty", species: "Human", status: "Alive", gender: "Male", dateCreated: "2017-11-04T18:50:21.651Z"}
+    {name: "Morty", species: "Human", status: "Alive", gender: "Male", dateCreated: "2017-11-04T18:50:21.651Z"},
+    {name: "Adam", species: "Human", status: "Unknown", gender: "Male", dateCreated: "2016-11-04T18:48:46.250Z"},
+    {name: "Foo", species: "Human", status: "Unknown", gender: "Male", dateCreated: "2015-11-04T18:50:21.651Z"},
+    {name: "Bar", species: "Human", status: "Dead", gender: "Male", dateCreated: "2014-11-04T18:48:46.250Z"},
+    {name: "Baz", species: "Human", status: "Dead", gender: "Male", dateCreated: "2013-11-04T18:50:21.651Z"}
   ]
 
   return (

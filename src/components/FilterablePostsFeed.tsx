@@ -52,6 +52,19 @@ function FilterBar() {
 
 function PostsFeed({ characters }: CharactersProp) {
     return (
-        <div>not implemented</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cards</th>
+                </tr>
+            </thead>
+            <tbody>
+                {characters.map((character) => (
+                    <tr key={character.name}>
+                        <td>{character.name}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
     );
 };
