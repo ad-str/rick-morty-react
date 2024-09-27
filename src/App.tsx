@@ -1,32 +1,19 @@
-import React, { useEffect } from 'react';
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
 import { fetchData } from './api/api.ts';
+import FilterablePostsFeed from './components/FilterablePostsFeed.tsx';
 
-function App() {
+export default function App() {
   useEffect(() => {
     fetchData('https://rickandmortyapi.com/api/character');
   }, []);
 
+  const CHARACTERS = [
+    {name: "Rick", species: "Human", status: "Alive", gender: "Male", dateCreated: "2017-11-04T18:48:46.250Z"},
+    {name: "Morty", species: "Human", status: "Alive", gender: "Male", dateCreated: "2017-11-04T18:50:21.651Z"}
+  ]
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          HELLO!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FilterablePostsFeed characters={CHARACTERS} />
   );
 }
-
-export default App;

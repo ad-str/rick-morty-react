@@ -1,0 +1,12 @@
+.filter-bar div {
+    margin-top: 5px;
+}
+
+.status-container {
+    display: flex;
+    align-items: center;
+}
+
+.status-container label {
+    margin-right: 10px;
+}
