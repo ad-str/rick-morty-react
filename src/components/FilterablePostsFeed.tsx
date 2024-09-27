@@ -120,9 +120,13 @@ function PostsFeed({ characters, sortOrder, statusFilter }: PostsFeedProps) {
 
     return (
         <div className="feed-container">
-            {sortedCharacters.map((character) => (
-                <CharacterCard character={character} />
-            ))}
+            {sortedCharacters.length === 0 ? (
+                <div>No characters found</div> // Display message if empty
+            ) : (
+                sortedCharacters.map((character) => (
+                    <CharacterCard character={character} />
+                ))
+            )}
         </div>
     );
 };
