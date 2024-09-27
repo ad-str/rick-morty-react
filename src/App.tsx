@@ -1,25 +1,34 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { fetchData } from './api/api.ts';
 import FilterablePostsFeed from './components/FilterablePostsFeed.tsx';
+import { Character } from './types/types.ts';
 
 export default function App() {
+  const [characters, setCharacters] = useState<Character[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
-    fetchData('https://rickandmortyapi.com/api/character');
-  }, []);
+      const fetchCharacters = async () => {
+          try {
+              const data = await fetchData<{ results: Character[] }>('https://rickandmortyapi.com/api/character');
+              setCharacters(data);
+          } catch (err) {
+              setError((err as Error).message);
+          }
+      };
 
-  const CHARACTERS = [
-    {name: "Rick", species: "Human", status: "Alive", gender: "Male", dateCreated: "2017-11-04T18:48:46.250Z"},
-    {name: "Morty", species: "Human", status: "Alive", gender: "Male", dateCreated: "2017-11-04T18:50:21.651Z"},
-    {name: "Adam", species: "Human", status: "Unknown", gender: "Male", dateCreated: "2016-11-04T18:48:46.250Z"},
-    {name: "Foo", species: "Human", status: "Unknown", gender: "Male", dateCreated: "2015-11-04T18:50:21.651Z"},
-    {name: "Bar", species: "Human", status: "Dead", gender: "Male", dateCreated: "2014-11-04T18:48:46.250Z"},
-    {name: "Baz", species: "Human", status: "Dead", gender: "Male", dateCreated: "2013-11-04T18:50:21.651Z"}
-  ]
+      fetchCharacters();
+  }, []); // Empty dependency array means this runs once after the initial render
 
+
+  if (error) {
+    return <div>Error fetching characters: {error}</div>; // Show error message
+  }
+  
   return (
     <div className="App">
-      <FilterablePostsFeed characters={CHARACTERS} />
+      <FilterablePostsFeed characters={characters} />
     </div>
   );
 }

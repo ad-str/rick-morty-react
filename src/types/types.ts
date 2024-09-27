@@ -3,5 +3,6 @@ export interface Character {
     species: string;
     status: string;
     gender: string;
-    dateCreated: string;
+    created: Date;
+    image: string;
 }

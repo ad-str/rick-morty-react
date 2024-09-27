@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './FilterablePostsFeed.css';
 import CharacterCard from './CharacterCard';
-import { Character } from './types';
+import { Character } from '../types/types';
 
 // specific types + interfaces
 type SortOrder = 'name' | 'date-new' | 'date-old';
@@ -109,9 +109,9 @@ function PostsFeed({ characters, sortOrder, statusFilter }: PostsFeedProps) {
             case 'name':
                 return a.name.localeCompare(b.name);
             case 'date-new':
-                return new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime();
+                return b.created.getTime() - a.created.getTime();
             case 'date-old':
-                return new Date(a.dateCreated).getTime() - new Date(b.dateCreated).getTime();
+                return a.created.getTime() - b.created.getTime();
             default:
                 return 0;
         }
