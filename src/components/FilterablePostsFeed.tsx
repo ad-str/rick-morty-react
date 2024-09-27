@@ -1,15 +1,9 @@
 import { useState } from 'react';
-import './FilterBar.css';
+import './FilterablePostsFeed.css';
+import CharacterCard from './CharacterCard';
+import { Character } from './types';
 
-// base types + interfaces
-interface Character {
-    name: string;
-    species: string;
-    status: string;
-    gender: string;
-    dateCreated: string;
-}
-
+// specific types + interfaces
 type SortOrder = 'name' | 'date-new' | 'date-old';
 
 interface StatusFilter {
@@ -75,12 +69,14 @@ function FilterBar({ sortOrder, setSortOrder, statusFilter, setStatusFilter }: F
 
     return (
         <div className='filter-bar'>
-            <label htmlFor="sort">Sort by: </label>
-            <select id="sort" name="sort" value={sortOrder} onChange={handleSortChange}>
-                <option value="date-old">Date (oldest to newest)</option>
-                <option value="date-new">Date (newest to oldest)</option>
-                <option value="name">Name</option>
-            </select>
+            <div className="sort-container">
+                <label htmlFor="sort">Sort by: </label>
+                <select id="sort" name="sort" value={sortOrder} onChange={handleSortChange}>
+                    <option value="date-old">Date (oldest to newest)</option>
+                    <option value="date-new">Date (newest to oldest)</option>
+                    <option value="name">Name</option>
+                </select>
+            </div>
             
             <div className='status-container'>
                 <label>Status:</label>
@@ -123,19 +119,10 @@ function PostsFeed({ characters, sortOrder, statusFilter }: PostsFeedProps) {
 
 
     return (
-        <table>
-            <thead>
-                <tr>
-                    <th>Cards</th>
-                </tr>
-            </thead>
-            <tbody>
-                {sortedCharacters.map((character) => (
-                    <tr key={character.name}>
-                        <td>{character.name}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+        <div className="feed-container">
+            {sortedCharacters.map((character) => (
+                <CharacterCard character={character} />
+            ))}
+        </div>
     );
 };

@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import './App.css';
 import { fetchData } from './api/api.ts';
 import FilterablePostsFeed from './components/FilterablePostsFeed.tsx';
-import CharacterCard from './components/CharacterCard.tsx';
 
 export default function App() {
   useEffect(() => {
@@ -21,11 +20,6 @@ export default function App() {
   return (
     <div className="App">
       <FilterablePostsFeed characters={CHARACTERS} />
-      <div className="feed-container">
-        <CharacterCard />
-        <CharacterCard />
-        <CharacterCard />
-      </div>
     </div>
   );
 }
